@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,28 +35,129 @@
             position: relative;
         }
         
-        .background-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .gift-stage {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .gift-stage h1 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .gift-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .gift-box {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+        
+        .gift-box-inner {
+            position: relative;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .gift-box:hover .gift-box-inner {
+            transform: translateY(-10px);
+        }
+        
+        .gift-box-front, .gift-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .gift-box-front {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transform: rotateY(0deg);
+        }
+        
+        .gift-box-front::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            top: 50px;
+        }
+        
+        .gift-box-front::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            left: 50px;
+        }
+        
+        .gift-box-front .ribbon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+        
+        .gift-box-back {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .gift-box.open .gift-box-inner {
+            transform: rotateY(180deg) translateY(-10px);
         }
         
         .birthday-card {
             position: relative;
             width: 90%;
-            max-width: 900px;
+            max-width: 800px;
             background: white;
             border-radius: 25px;
             box-shadow: var(--shadow);
             overflow: hidden;
             margin: 30px auto;
-            animation: fadeIn 1.5s ease;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            display: none;
+            animation: fadeIn 1s ease;
         }
         
         .card-header {
@@ -70,27 +169,12 @@
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
         
-        .card-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
-            background-size: cover;
-            opacity: 0.3;
-        }
-        
         .card-header h1 {
             font-family: 'Pacifico', cursive;
             font-size: 4rem;
             margin: 0;
             color: var(--light-text);
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 2;
-            transform: rotate(-2deg);
             animation: pulse 2s infinite alternate;
         }
         
@@ -98,8 +182,6 @@
             font-size: 1.3rem;
             color: rgba(255, 255, 255, 0.9);
             margin: 15px 0 0;
-            position: relative;
-            z-index: 2;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -120,31 +202,15 @@
             border: 8px solid white;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            position: relative;
-            background-color: #fff;
         }
         
         .birthday-girl:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-        
-        .birthday-girl::after {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            border: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: rotate 10s linear infinite;
-            pointer-events: none;
+            transform: scale(1.05);
         }
         
         .card-content {
             padding: 40px;
             text-align: center;
-            position: relative;
         }
         
         .message {
@@ -152,27 +218,6 @@
             line-height: 1.8;
             margin: 30px 0;
             color: #555;
-            position: relative;
-            padding: 0 20px;
-        }
-        
-        .message::before, .message::after {
-            content: '"';
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: var(--primary-color);
-            position: absolute;
-            opacity: 0.3;
-        }
-        
-        .message::before {
-            top: -20px;
-            left: 0;
-        }
-        
-        .message::after {
-            bottom: -40px;
-            right: 0;
         }
         
         .signature {
@@ -181,8 +226,6 @@
             color: var(--primary-color);
             margin: 40px 0 20px;
             display: inline-block;
-            transform: rotate(-5deg);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .cake-container {
@@ -225,59 +268,6 @@
             z-index: 3;
         }
         
-        .gift-boxes {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 50px 0;
-            flex-wrap: wrap;
-        }
-        
-        .gift-box {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            border-radius: 15px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateY(0deg);
-            transition: all 0.5s ease;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-        
-        .gift-box:hover {
-            transform: rotateY(180deg) scale(1.1);
-        }
-        
-        .gift-box::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.3);
-            top: 50px;
-        }
-        
-        .gift-box::after {
-            content: "";
-            position: absolute;
-            width: 25px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            left: 37.5px;
-        }
-        
-        .gift-box .ribbon {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            top: 35px;
-            left: 35px;
-        }
-        
         .photo-collage {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -290,7 +280,6 @@
             padding: 15px 15px 50px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            position: relative;
             transform: rotate(var(--rotation));
         }
         
@@ -300,7 +289,6 @@
         
         .polaroid:hover {
             transform: rotate(0deg) scale(1.05);
-            z-index: 2;
         }
         
         .polaroid img {
@@ -308,7 +296,6 @@
             height: 150px;
             object-fit: cover;
             border: 1px solid #eee;
-            margin-bottom: 10px;
         }
         
         .polaroid p {
@@ -320,7 +307,7 @@
         }
         
         .hearts-container {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -338,23 +325,13 @@
             animation: float-up 4s linear infinite;
         }
         
-        .music-note {
+        .confetti {
             position: absolute;
-            font-size: 24px;
-            color: var(--primary-color);
+            width: 15px;
+            height: 15px;
+            background: var(--random-color);
             opacity: 0;
-            animation: float-up 5s linear infinite;
-        }
-        
-        .footer-message {
-            background: linear-gradient(135deg, rgba(255, 107, 139, 0.1) 0%, rgba(255, 179, 193, 0.1) 100%);
-            padding: 30px;
-            text-align: center;
-            font-style: italic;
-            color: var(--primary-color);
-            font-weight: 600;
-            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
-            margin-top: 40px;
+            animation: float-up 3s linear infinite;
         }
         
         @keyframes fadeIn {
@@ -373,14 +350,9 @@
         }
         
         @keyframes pulse {
-            0% { transform: scale(1) rotate(-2deg); }
-            50% { transform: scale(1.05) rotate(-2deg); }
-            100% { transform: scale(1) rotate(-2deg); }
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         @keyframes float-up {
@@ -407,6 +379,11 @@
             .polaroid {
                 max-width: 250px;
                 margin: 0 auto;
+            }
+            
+            .gift-box {
+                width: 100px;
+                height: 100px;
             }
         }
         
@@ -452,57 +429,85 @@
     </style>
 </head>
 <body>
-    <div class="background-elements" id="hearts-container"></div>
+    <div class="hearts-container" id="hearts-container"></div>
     
-    <div class="birthday-card">
-        <div class="card-header">
-            <h1 class="animate__animated animate__bounceIn">Happy Birthday Jiya!</h1>
-            <p class="animate__animated animate__fadeIn">May your day be as special as you are!</p>
-        </div>
-        
-        <div class="birthday-girl-container">
-            <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan" class="birthday-girl animate__animated animate__bounceIn">
-        </div>
-        
-        <div class="card-content">
-            <div class="message animate__animated animate__fadeIn animate__delay-1s">
-                <p>Dear Jiya,</p>
-                <p>On your special day, I want to remind you how incredibly amazing you are! Your kindness, intelligence, and beautiful spirit make the world a better place.</p>
-                <p>May this year bring you endless opportunities, laughter that never ends, and dreams that turn into reality. You deserve all the happiness in the universe!</p>
-                <p>Thank you for being you - my wonderful, irreplaceable best friend.</p>
-            </div>
-            
-            <div class="cake-container">
-                <div class="candle"></div>
-                <div class="flame"></div>
-                <img src="https://iili.io/FLnlUoQ.jpg" alt="Birthday Cake" class="cake">
-            </div>
-            
-            <div class="photo-collage">
-                <div class="polaroid animate__animated animate__fadeIn animate__delay-1s">
-                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
-                    <p>Beautiful Smile</p>
-                </div>
-                <div class="polaroid animate__animated animate__fadeIn animate__delay-2s">
-                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
-                    <p>Best Friend</p>
-                </div>
-                <div class="polaroid animate__animated animate__fadeIn animate__delay-3s">
-                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
-                    <p>Amazing Soul</p>
-                </div>
-            </div>
-            
+    <div class="container">
+        <div class="gift-stage" id="giftStage">
+            <h1 class="animate__animated animate__bounceIn">Click on the gifts!</h1>
             <div class="gift-boxes">
-                <div class="gift-box animate__animated animate__bounceIn animate__delay-1s"></div>
-                <div class="gift-box animate__animated animate__bounceIn animate__delay-2s"></div>
-                <div class="gift-box animate__animated animate__bounceIn animate__delay-3s"></div>
+                <div class="gift-box animate__animated animate__bounceIn">
+                    <div class="gift-box-inner">
+                        <div class="gift-box-front">
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="gift-box-back">
+                            <p>For the most amazing friend!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gift-box animate__animated animate__bounceIn animate__delay-1s">
+                    <div class="gift-box-inner">
+                        <div class="gift-box-front">
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="gift-box-back">
+                            <p>Wishing you endless happiness!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gift-box animate__animated animate__bounceIn animate__delay-2s">
+                    <div class="gift-box-inner">
+                        <div class="gift-box-front">
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="gift-box-back">
+                            <p>May all your dreams come true!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="birthday-card" id="birthdayCard">
+            <div class="card-header">
+                <h1>Happy Birthday Jiya!</h1>
+                <p>May your day be as special as you are!</p>
             </div>
             
-            <p class="signature animate__animated animate__fadeIn animate__delay-2s">With all my love</p>
+            <div class="birthday-girl-container">
+                <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan" class="birthday-girl">
+            </div>
             
-            <div class="footer-message animate__animated animate__fadeIn animate__delay-3s">
-                <p>Wishing you a year filled with joy, success, and wonderful memories!</p>
+            <div class="card-content">
+                <div class="message">
+                    <p>Dear Jiya,</p>
+                    <p>On your special day, I want to remind you how incredibly amazing you are! Your kindness, intelligence, and beautiful spirit make the world a better place.</p>
+                    <p>May this year bring you endless opportunities, laughter that never ends, and dreams that turn into reality. You deserve all the happiness in the universe!</p>
+                    <p>Thank you for being you - my wonderful, irreplaceable best friend.</p>
+                </div>
+                
+                <div class="cake-container">
+                    <div class="candle"></div>
+                    <div class="flame"></div>
+                    <img src="https://iili.io/FLnlUoQ.jpg" alt="Birthday Cake" class="cake">
+                </div>
+                
+                <div class="photo-collage">
+                    <div class="polaroid">
+                        <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                        <p>Beautiful Smile</p>
+                    </div>
+                    <div class="polaroid">
+                        <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                        <p>Best Friend</p>
+                    </div>
+                    <div class="polaroid">
+                        <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                        <p>Amazing Soul</p>
+                    </div>
+                </div>
+                
+                <p class="signature">With all my love</p>
             </div>
         </div>
     </div>
@@ -511,13 +516,13 @@
     <div class="audio-player">
         <span>Birthday Music</span>
         <button id="playButton">▶</button>
-        <audio id="birthdayAudio" loop autoplay>
+        <audio id="birthdayAudio" loop>
             <source src="https://storage.aisongmaker.io/audio/a36fa910-bb7c-4c5d-8da8-e21682c61a9c.mp3" type="audio/mpeg">
         </audio>
     </div>
     
     <script>
-        // Create floating hearts
+        // Create floating hearts and confetti
         const heartsContainer = document.getElementById('hearts-container');
         const colors = ['#ff6b8b', '#ffb3c1', '#ff8e9e', '#ffc0cb', '#ff9aa2'];
         
@@ -532,70 +537,99 @@
             heartsContainer.appendChild(heart);
         }
         
-        // Create music notes
-        function createMusicNote() {
-            const notes = ['♪', '♫', '♩', '♬', '♭'];
-            const note = document.createElement('div');
-            note.className = 'music-note';
-            note.textContent = notes[Math.floor(Math.random() * notes.length)];
-            note.style.left = `${Math.random() * 100}%`;
-            note.style.fontSize = `${Math.random() * 20 + 16}px`;
-            note.style.animationDuration = `${Math.random() * 4 + 5}s`;
-            note.style.animationDelay = `${Math.random() * 2}s`;
-            heartsContainer.appendChild(note);
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.width = `${Math.random() * 15 + 10}px`;
+            confetti.style.height = confetti.style.width;
+            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            confetti.style.animationDelay = `${Math.random() * 2}s`;
+            confetti.style.setProperty('--random-color', colors[Math.floor(Math.random() * colors.length)]);
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            heartsContainer.appendChild(confetti);
         }
         
         // Create initial elements
         for (let i = 0; i < 20; i++) {
             createHeart();
-            if (i % 3 === 0) createMusicNote();
+            createConfetti();
         }
         
         // Create elements periodically
         setInterval(() => {
             if (Math.random() > 0.3) createHeart();
-            if (Math.random() > 0.7) createMusicNote();
-        }, 1000);
+            if (Math.random() > 0.5) createConfetti();
+        }, 800);
         
-        // Add gift box click effect
-        document.querySelectorAll('.gift-box').forEach(box => {
+        // Gift box interaction
+        const giftBoxes = document.querySelectorAll('.gift-box');
+        const giftStage = document.getElementById('giftStage');
+        const birthdayCard = document.getElementById('birthdayCard');
+        let openedGifts = 0;
+        
+        giftBoxes.forEach(box => {
             box.addEventListener('click', function() {
-                this.classList.add('animate__animated', 'animate__tada');
-                setTimeout(() => {
-                    this.classList.remove('animate__animated', 'animate__tada');
-                }, 1000);
-                
-                // Create burst effect
-                for (let i = 0; i < 10; i++) {
-                    setTimeout(() => {
-                        const spark = document.createElement('div');
-                        spark.className = 'heart';
-                        spark.style.position = 'absolute';
-                        spark.style.left = `${box.offsetLeft + box.offsetWidth/2}px`;
-                        spark.style.top = `${box.offsetTop + box.offsetHeight/2}px`;
-                        spark.style.width = '15px';
-                        spark.style.height = '15px';
-                        spark.style.animation = 'none';
-                        spark.style.transition = 'all 0.5s ease-out';
-                        spark.style.opacity = '1';
-                        document.body.appendChild(spark);
-                        
+                if (!this.classList.contains('open')) {
+                    this.classList.add('open');
+                    openedGifts++;
+                    
+                    // Create burst effect
+                    createBurstEffect(this);
+                    
+                    // If all gifts are opened, show the birthday card
+                    if (openedGifts === giftBoxes.length) {
                         setTimeout(() => {
-                            spark.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
-                            spark.style.opacity = '0';
-                        }, 10);
-                        
-                        setTimeout(() => {
-                            spark.remove();
-                        }, 600);
-                    }, i * 50);
+                            giftStage.style.display = 'none';
+                            birthdayCard.style.display = 'block';
+                            document.body.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Increase confetti for celebration
+                            for (let i = 0; i < 50; i++) {
+                                setTimeout(() => {
+                                    createConfetti();
+                                }, i * 50);
+                            }
+                        }, 1000);
+                    }
                 }
             });
         });
         
-        // ---- UPDATED AUDIO PLAYER SCRIPT ----
-        // This script now attempts to automatically play the music on page load.
+        function createBurstEffect(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'confetti';
+                    particle.style.position = 'fixed';
+                    particle.style.left = `${centerX}px`;
+                    particle.style.top = `${centerY}px`;
+                    particle.style.width = '10px';
+                    particle.style.height = '10px';
+                    particle.style.setProperty('--random-color', colors[Math.floor(Math.random() * colors.length)]);
+                    particle.style.animation = 'none';
+                    particle.style.transition = 'all 0.8s ease-out';
+                    particle.style.opacity = '1';
+                    particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg)`;
+                        particle.style.opacity = '0';
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }, i * 50);
+            }
+        }
         
+        // Audio player functionality
         const audio = document.getElementById('birthdayAudio');
         const playButton = document.getElementById('playButton');
         
@@ -607,7 +641,7 @@
                         playButton.textContent = '❚❚';
                     })
                     .catch(error => {
-                        console.error('Audio playback failed on click:', error);
+                        console.error('Audio playback failed:', error);
                     });
             } else {
                 audio.pause();
@@ -618,25 +652,27 @@
         // Attach click listener to the button
         playButton.addEventListener('click', togglePlay);
         
-        // Attempt to autoplay when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            // The 'autoplay' attribute on the audio tag is our first attempt.
-            // This script tries again and syncs the UI.
+        // Attempt to autoplay when gifts are opened
+        function tryAutoplay() {
             let playPromise = audio.play();
             
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    // Autoplay started successfully!
                     playButton.textContent = '❚❚';
                 }).catch(error => {
-                    // Autoplay was prevented by the browser.
-                    // We'll show the play button so the user can start it manually.
                     playButton.textContent = '▶';
-                    console.log('Autoplay was prevented. User must interact with the page to start music.');
                 });
             }
+        }
+        
+        // When all gifts are opened, try to play music
+        giftBoxes.forEach(box => {
+            box.addEventListener('click', function() {
+                if (openedGifts === giftBoxes.length) {
+                    setTimeout(tryAutoplay, 500);
+                }
+            });
         });
-
     </script>
 </body>
 </html>

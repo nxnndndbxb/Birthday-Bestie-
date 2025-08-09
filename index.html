@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jiya Khan!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600;700&family=Pacifico&display=swap');
+        
+        :root {
+            --primary-color: #ff6b8b;
+            --secondary-color: #ffb3c1;
+            --accent-color: #ff8e9e;
+            --text-color: #333;
+            --light-text: #fff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef1 100%);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .background-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .birthday-card {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: 30px auto;
+            animation: fadeIn 1.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .card-header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            margin: 0;
+            color: var(--light-text);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+            transform: rotate(-2deg);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .card-header p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 15px 0 0;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .birthday-girl-container {
+            display: flex;
+            justify-content: center;
+            margin-top: -80px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .birthday-girl {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            background-color: #fff;
+        }
+        
+        .birthday-girl:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .birthday-girl::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+            pointer-events: none;
+        }
+        
+        .card-content {
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 30px 0;
+            color: #555;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .message::before, .message::after {
+            content: '"';
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--primary-color);
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .message::before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .message::after {
+            bottom: -40px;
+            right: 0;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 40px 0 20px;
+            display: inline-block;
+            transform: rotate(-5deg);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cake-container {
+            margin: 40px auto;
+            position: relative;
+            width: 250px;
+            height: 200px;
+        }
+        
+        .cake {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.1));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .candle {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ffd700, #ff9900);
+            border-radius: 5px;
+            z-index: 2;
+        }
+        
+        .flame {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 25px;
+            background: linear-gradient(to bottom, #ffff00, #ff6600);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.8s infinite alternate, float 3s ease-in-out infinite;
+            box-shadow: 0 0 15px #ff9900, 0 0 30px #ff6600;
+            z-index: 3;
+        }
+        
+        .gift-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+        
+        .gift-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 15px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+        
+        .gift-box:hover {
+            transform: rotateY(180deg) scale(1.1);
+        }
+        
+        .gift-box::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.3);
+            top: 50px;
+        }
+        
+        .gift-box::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            left: 37.5px;
+        }
+        
+        .gift-box .ribbon {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: 35px;
+            left: 35px;
+        }
+        
+        .photo-collage {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .polaroid {
+            background: white;
+            padding: 15px 15px 50px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            transform: rotate(var(--rotation));
+        }
+        
+        .polaroid:nth-child(1) { --rotation: -5deg; }
+        .polaroid:nth-child(2) { --rotation: 3deg; }
+        .polaroid:nth-child(3) { --rotation: -3deg; }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 2;
+        }
+        
+        .polaroid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .polaroid p {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            margin: 10px 0 0;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b8b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+            opacity: 0;
+            animation: float-up 4s linear infinite;
+        }
+        
+        .music-note {
+            position: absolute;
+            font-size: 24px;
+            color: var(--primary-color);
+            opacity: 0;
+            animation: float-up 5s linear infinite;
+        }
+        
+        .footer-message {
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.1) 0%, rgba(255, 179, 193, 0.1) 100%);
+            padding: 30px;
+            text-align: center;
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: 600;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+            margin-top: 40px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) scale(0.9); opacity: 0.8; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(-2deg); }
+            50% { transform: scale(1.05) rotate(-2deg); }
+            100% { transform: scale(1) rotate(-2deg); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .card-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .birthday-girl {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .photo-collage {
+                grid-template-columns: 1fr;
+            }
+            
+            .polaroid {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* Audio player styling */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audio-player button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .audio-player button:hover {
+            transform: scale(1.1);
+            background: var(--accent-color);
+        }
+        
+        .audio-player span {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements" id="hearts-container"></div>
+    
+    <div class="birthday-card">
+        <div class="card-header">
+            <h1 class="animate__animated animate__bounceIn">Happy Birthday Jiya!</h1>
+            <p class="animate__animated animate__fadeIn">May your day be as special as you are!</p>
+        </div>
+        
+        <div class="birthday-girl-container">
+            <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan" class="birthday-girl animate__animated animate__bounceIn">
+        </div>
+        
+        <div class="card-content">
+            <div class="message animate__animated animate__fadeIn animate__delay-1s">
+                <p>Dear Jiya,</p>
+                <p>On your special day, I want to remind you how incredibly amazing you are! Your kindness, intelligence, and beautiful spirit make the world a better place.</p>
+                <p>May this year bring you endless opportunities, laughter that never ends, and dreams that turn into reality. You deserve all the happiness in the universe!</p>
+                <p>Thank you for being you - my wonderful, irreplaceable best friend.</p>
+            </div>
+            
+            <div class="cake-container">
+                <div class="candle"></div>
+                <div class="flame"></div>
+                <img src="https://iili.io/FLnlUoQ.jpg" alt="Birthday Cake" class="cake">
+            </div>
+            
+            <div class="photo-collage">
+                <div class="polaroid animate__animated animate__fadeIn animate__delay-1s">
+                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                    <p>Beautiful Smile</p>
+                </div>
+                <div class="polaroid animate__animated animate__fadeIn animate__delay-2s">
+                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                    <p>Best Friend</p>
+                </div>
+                <div class="polaroid animate__animated animate__fadeIn animate__delay-3s">
+                    <img src="https://iili.io/FLCPEyg.png" alt="Jiya Khan">
+                    <p>Amazing Soul</p>
+                </div>
+            </div>
+            
+            <div class="gift-boxes">
+                <div class="gift-box animate__animated animate__bounceIn animate__delay-1s"></div>
+                <div class="gift-box animate__animated animate__bounceIn animate__delay-2s"></div>
+                <div class="gift-box animate__animated animate__bounceIn animate__delay-3s"></div>
+            </div>
+            
+            <p class="signature animate__animated animate__fadeIn animate__delay-2s">With all my love</p>
+            
+            <div class="footer-message animate__animated animate__fadeIn animate__delay-3s">
+                <p>Wishing you a year filled with joy, success, and wonderful memories!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio player -->
+    <div class="audio-player">
+        <span>Birthday Music</span>
+        <button id="playButton">▶</button>
+        <audio id="birthdayAudio" loop autoplay>
+            <source src="https://storage.aisongmaker.io/audio/a36fa910-bb7c-4c5d-8da8-e21682c61a9c.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts-container');
+        const colors = ['#ff6b8b', '#ffb3c1', '#ff8e9e', '#ffc0cb', '#ff9aa2'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.width = `${Math.random() * 30 + 20}px`;
+            heart.style.height = heart.style.width;
+            heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
+            heart.style.animationDelay = `${Math.random() * 2}s`;
+            heartsContainer.appendChild(heart);
+        }
+        
+        // Create music notes
+        function createMusicNote() {
+            const notes = ['♪', '♫', '♩', '♬', '♭'];
+            const note = document.createElement('div');
+            note.className = 'music-note';
+            note.textContent = notes[Math.floor(Math.random() * notes.length)];
+            note.style.left = `${Math.random() * 100}%`;
+            note.style.fontSize = `${Math.random() * 20 + 16}px`;
+            note.style.animationDuration = `${Math.random() * 4 + 5}s`;
+            note.style.animationDelay = `${Math.random() * 2}s`;
+            heartsContainer.appendChild(note);
+        }
+        
+        // Create initial elements
+        for (let i = 0; i < 20; i++) {
+            createHeart();
+            if (i % 3 === 0) createMusicNote();
+        }
+        
+        // Create elements periodically
+        setInterval(() => {
+            if (Math.random() > 0.3) createHeart();
+            if (Math.random() > 0.7) createMusicNote();
+        }, 1000);
+        
+        // Add gift box click effect
+        document.querySelectorAll('.gift-box').forEach(box => {
+            box.addEventListener('click', function() {
+                this.classList.add('animate__animated', 'animate__tada');
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__tada');
+                }, 1000);
+                
+                // Create burst effect
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const spark = document.createElement('div');
+                        spark.className = 'heart';
+                        spark.style.position = 'absolute';
+                        spark.style.left = `${box.offsetLeft + box.offsetWidth/2}px`;
+                        spark.style.top = `${box.offsetTop + box.offsetHeight/2}px`;
+                        spark.style.width = '15px';
+                        spark.style.height = '15px';
+                        spark.style.animation = 'none';
+                        spark.style.transition = 'all 0.5s ease-out';
+                        spark.style.opacity = '1';
+                        document.body.appendChild(spark);
+                        
+                        setTimeout(() => {
+                            spark.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
+                            spark.style.opacity = '0';
+                        }, 10);
+                        
+                        setTimeout(() => {
+                            spark.remove();
+                        }, 600);
+                    }, i * 50);
+                }
+            });
+        });
+        
+        // ---- UPDATED AUDIO PLAYER SCRIPT ----
+        // This script now attempts to automatically play the music on page load.
+        
+        const audio = document.getElementById('birthdayAudio');
+        const playButton = document.getElementById('playButton');
+        
+        // Function to toggle play/pause
+        const togglePlay = () => {
+            if (audio.paused) {
+                audio.play()
+                    .then(() => {
+                        playButton.textContent = '❚❚';
+                    })
+                    .catch(error => {
+                        console.error('Audio playback failed on click:', error);
+                    });
+            } else {
+                audio.pause();
+                playButton.textContent = '▶';
+            }
+        };
+        
+        // Attach click listener to the button
+        playButton.addEventListener('click', togglePlay);
+        
+        // Attempt to autoplay when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // The 'autoplay' attribute on the audio tag is our first attempt.
+            // This script tries again and syncs the UI.
+            let playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started successfully!
+                    playButton.textContent = '❚❚';
+                }).catch(error => {
+                    // Autoplay was prevented by the browser.
+                    // We'll show the play button so the user can start it manually.
+                    playButton.textContent = '▶';
+                    console.log('Autoplay was prevented. User must interact with the page to start music.');
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
